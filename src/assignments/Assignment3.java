@@ -4,7 +4,15 @@ import java.util.Arrays;
 
 public class Assignment3 {
 
+    private static void checkArray(int[] array) {
+        if (array == null || array.length == 0) {
+            System.out.println("Array is either null or empty.");
+            System.exit(0);
+        }
+    }
+
     private static int minValue(int[] array) {
+        checkArray(array);
         int min = array[0];
         for (int i : array) {
             if (i < min) {
@@ -15,10 +23,11 @@ public class Assignment3 {
     }
 
     private static int[] maxValue(int[] array) {
+        checkArray(array);
         int max = array[0];
         int index = 0;
 
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 1; i < array.length; i++) {
             if (array[i] > max) {
                 max = array[i];
                 index = i;
@@ -28,6 +37,7 @@ public class Assignment3 {
     }
 
     private static double avg(int[] array) {
+        checkArray(array);
         double sum = 0;
         for (int i : array) {
             sum += i;
@@ -41,7 +51,7 @@ public class Assignment3 {
 
         for (int i = 0; i < array.length; i++) {
             sortedArray[i] = maxValue(tempArray)[0];
-            tempArray[maxValue(tempArray)[1]] = 0;
+            tempArray[maxValue(tempArray)[1]] = Integer.MIN_VALUE;
         }
         return sortedArray;
     }
@@ -52,13 +62,13 @@ public class Assignment3 {
 
         for (int i = array.length - 1; i >= 0; i--) {
             sortedArray[i] = maxValue(tempArray)[0];
-            tempArray[maxValue(tempArray)[1]] = 0;
+            tempArray[maxValue(tempArray)[1]] = Integer.MIN_VALUE;
         }
         return sortedArray;
     }
 
     public static void main(String[] args) {
-        int[] array = {3, 9, 2, 12, 32, 24};
+        int[] array = {-1, 20, 3, 7, -33, 62, 1};
         System.out.println("Minimum value in array = " + minValue(array));
         System.out.println("Maximum value in array = " + maxValue(array)[0]);
         System.out.println("Average of values in array = " + avg(array));
